@@ -1,0 +1,24 @@
+import pandas as pd
+
+laptops = pd.read_csv("laptops.csv", encoding="Latin-1")
+laptops.info()
+
+
+# finish cleaning our column labels by replacing spaces with underscores,
+# removing special characters, making all labels lowercase, and
+# shortening any long column names.
+def clean_col(string):
+    string = str.strip(string)
+    string = string.replace("Operating System", "os")
+    string = string.replace(" ", "_")
+    string = string.replace("(", "")
+    string = string.replace(")", "")
+    string = str.lower(string)
+    return string
+
+
+column_headers = []
+for column in laptops.columns:
+    column_headers.append(clean_col(column))
+laptops.columns = column_headers
+laptops.info()
