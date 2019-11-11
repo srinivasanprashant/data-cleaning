@@ -22,3 +22,66 @@ for column in laptops.columns:
     column_headers.append(clean_col(column))
 laptops.columns = column_headers
 laptops.info()
+
+# We can identify the unique values in the ram column of the laptops dataframe
+# unique_ram = laptops["ram"].unique()
+# Let's remove the non-digit characters from the ram column
+laptops["ram"] = laptops["ram"].str.replace("GB", "")
+unique_ram = laptops["ram"].unique()
+# Change the ram column to an integer dtype
+laptops["ram"] = laptops["ram"].astype(int)
+laptops.rename({"ram": "ram_gb"}, axis=1, inplace=True)
+
+# Remove all the quote characters from every string in the screen_size column
+laptops["screen_size"] = laptops["screen_size"].str.replace('"', '')
+# Convert the screen_size column to the float dtype
+laptops["screen_size"] = laptops["screen_size"].astype(float)
+laptops.rename({"screen_size": "screen_size_inches"}, axis=1, inplace=True)
+
+# extract the manufacturer from the cpu and gpu columns
+laptops["cpu_manufacturer"] = laptops["cpu"].str.split().str[0]
+laptops["gpu_manufacturer"] = laptops["gpu"].str.split().str[0]
+laptops.info()
+
+# Clean the values in the os column using mapping
+mapping_dict = {
+    'Android': 'Android',
+    'Chrome OS': 'Chrome OS',
+    'Linux': 'Linux',
+    'Mac OS': 'macOS',
+    'No OS': 'No OS',
+    'Windows': 'Windows',
+    'macOS': 'macOS'
+}
+laptops["os"] = laptops["os"].map(mapping_dict)
+
+# fill the missing values for os_version to make our data more complete
+value_counts_before = laptops.loc[laptops["os_version"].isnull(), "os"].value_counts()
+laptops.loc[laptops["os"] == "macOS", "os_version"] = "X"
+laptops.loc[laptops["os"] == "No OS", "os_version"] = "Version Unknown"
+value_counts_after = laptops.loc[laptops["os_version"].isnull(), "os"].value_counts()
+print("OS with version NULL before cleaning:")
+print(value_counts_before)
+print("OS with version NULL after cleaning:")
+print(value_counts_after)
+
+# Finally, clean the weight column
+# Convert the values in the weight column to numeric values
+laptops["weight"] = (laptops["weight"].str.replace("kgs", ""))
+laptops["weight"] = (laptops["weight"].str.replace("kg", ""))
+laptops["weight"] = laptops["weight"].astype(float)
+# Rename the weight column to weight_kg
+laptops.rename({"weight": "weight_kg"}, axis=1, inplace=True)
+
+# Use the DataFrame.to_csv() method to save the laptops dataframe to a CSV file laptops_cleaned.csv with index labels
+laptops.to_csv("laptops_cleaned.csv", header=True)
+
+# Further work to be performed on this data set:
+# Convert the price_euros column to a numeric dtype.
+# Extract the screen resolution from the screen column.
+# Extract the processor speed from the cpu column.
+#
+# Next goal is to answer the following questions:
+# Are laptops made by Apple more expensive than those made by other manufacturers?
+# What is the best value laptop with a screen size of 15" or more?
+# Which laptop has the most storage space?
