@@ -1,10 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< Updated upstream
     <list default="true" id="0803cdc7-39e5-4fd8-bff0-33538a8a5926" name="Default Changelist" comment="">
       <change afterPath="$PROJECT_DIR$/data-cleaning" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
+=======
+    <list default="true" id="0803cdc7-39e5-4fd8-bff0-33538a8a5926" name="Default Changelist" comment="" />
+>>>>>>> Stashed changes
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,8 +20,13 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/data-cleaning">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
             <state relative-caret-position="528">
               <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+=======
+            <state relative-caret-position="465">
+              <caret line="82" column="1" lean-forward="true" selection-start-line="79" selection-end-line="82" selection-end-column="1" />
+>>>>>>> Stashed changes
             </state>
           </provider>
         </entry>
@@ -143,8 +152,13 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/data-cleaning">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< Updated upstream
         <state relative-caret-position="528">
           <caret line="24" lean-forward="true" selection-start-line="24" selection-end-line="24" />
+=======
+        <state relative-caret-position="465">
+          <caret line="82" column="1" lean-forward="true" selection-start-line="79" selection-end-line="82" selection-end-column="1" />
+>>>>>>> Stashed changes
         </state>
       </provider>
     </entry>
