@@ -73,12 +73,36 @@ laptops["weight"] = laptops["weight"].astype(float)
 # Rename the weight column to weight_kg
 laptops.rename({"weight": "weight_kg"}, axis=1, inplace=True)
 
+# Further work to be performed on this data set:
+# Convert the price_euros column to a numeric dtype.
+# Reviewing the data in the column, we have a comma instead of a  decimal point. Let's replace that
+laptops["price_euros"] = ((laptops["price_euros"]).str.replace(",", ".")).astype(float)
+print(laptops["price_euros"].describe())
+
+# Extract the screen resolution from the screen column.
+# First investigate to see what typ of data is stored in the "screen" column
+print(laptops["screen"].value_counts())
+# The resolution appears to be a string with the character x between two numbers, for most rows of the data
+# Full HD 1920x1080                                507
+# 1366x768                                         281
+# IPS Panel Full HD 1920x1080                      230
+# IPS Panel Full HD / Touchscreen 1920x1080         53
+# Full HD / Touchscreen 1920x1080                   47
+# 1600x900                                          23
+# Touchscreen 1366x768                              16
+# Quad HD+ / Touchscreen 3200x1800                  15
+# ... etc.
+
+#TODO
+# Find the correct word with 'x' and the numbers for the resolution
+# Parse the word and pull out the resolution as two separate numbers
+# Add these columns back into the data set - preferably after the resolution column?
+# Consider removing the string from the current screen column so we don't have redundant information
+print(laptops["screen"].str.find("x"))
+
 # Use the DataFrame.to_csv() method to save the laptops dataframe to a CSV file laptops_cleaned.csv with index labels
 laptops.to_csv("laptops_cleaned.csv", header=True)
 
-# Further work to be performed on this data set:
-# Convert the price_euros column to a numeric dtype.
-# Extract the screen resolution from the screen column.
 # Extract the processor speed from the cpu column.
 #
 # Next goal is to answer the following questions:
