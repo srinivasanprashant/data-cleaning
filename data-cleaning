@@ -111,7 +111,6 @@ with pd.option_context('display.max_rows', 999):
     print(cpu_speed.value_counts())
 
 
-# Next goal is to answer the following questions:
 # Are laptops made by Apple more expensive than those made by other manufacturers?
 # What is the best value laptop with a screen size of 15" or more?
 # Which laptop has the most storage space?
