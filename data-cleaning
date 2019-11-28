@@ -80,7 +80,7 @@ laptops["price_euros"] = ((laptops["price_euros"]).str.replace(",", ".")).astype
 print(laptops["price_euros"].describe())
 
 # Extract the screen resolution from the screen column.
-# First investigate to see what typ of data is stored in the "screen" column
+# First investigate to see what type of data is stored in the "screen" column
 print(laptops["screen"].value_counts())
 # The resolution appears to be a string with the character x between two numbers, for most rows of the data
 # Full HD 1920x1080                                507
@@ -93,18 +93,24 @@ print(laptops["screen"].value_counts())
 # Quad HD+ / Touchscreen 3200x1800                  15
 # ... etc.
 
-#TODO
-# Find the correct word with 'x' and the numbers for the resolution
-# Parse the word and pull out the resolution as two separate numbers
-# Add these columns back into the data set - preferably after the resolution column?
-# Consider removing the string from the current screen column so we don't have redundant information
-print(laptops["screen"].str.find("x"))
+# Resolution is stored as the last word. Extract this and display
+resolution = (laptops["screen"].str.split())
+resolution = resolution.str.get(-1)
+# Display statistics about the resolution. This is more general than the screen statistics above
+print(resolution.value_counts())
 
 # Use the DataFrame.to_csv() method to save the laptops dataframe to a CSV file laptops_cleaned.csv with index labels
 laptops.to_csv("laptops_cleaned.csv", header=True)
 
 # Extract the processor speed from the cpu column.
-#
+cpu_speed = laptops["cpu"].str.replace("GHz","")
+cpu_speed = cpu_speed.str.split()
+# Extract CPU speeds as numbers and sho statistics on speed
+cpu_speed = cpu_speed.str.get(-1)
+with pd.option_context('display.max_rows', 999):
+    print(cpu_speed.value_counts())
+
+
 # Next goal is to answer the following questions:
 # Are laptops made by Apple more expensive than those made by other manufacturers?
 # What is the best value laptop with a screen size of 15" or more?
